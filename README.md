@@ -28,7 +28,7 @@ The following **stretch** features are implemented:
     - [ ] Capture Tab (to make a new post using the Camera and Photo Gallery)
     - [ ] Profile Tab (to view only the current user's posts, in a grid)
 - [X] Show the username and creation time for each post
-- User Profiles:
+- [ ] User Profiles:
     - [ ] Allow the logged in user to add a profile photo
     - [ ] Display the profile photo with each post
     - [ ] Tapping on a post's username or profile photo goes to that user's profile page
