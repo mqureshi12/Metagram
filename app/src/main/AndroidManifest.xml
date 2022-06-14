@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <queries>
+
         <!-- Camera -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -24,6 +25,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Metagram"
         tools:targetApi="31">
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".FeedActivity" />
+        <activity
+            android:name=".FeedActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -49,8 +59,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
