@@ -78,6 +78,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
+                ivImage.setVisibility(View.VISIBLE);
             } else {
                 ivImage.setVisibility(View.GONE);
             }
