@@ -29,9 +29,9 @@ The following **stretch** features are implemented:
     - [ ] Profile Tab (to view only the current user's posts, in a grid)
 - [X] Show the username and creation time for each post
 - [ ] User Profiles:
-    - [ ] Allow the logged in user to add a profile photo
-    - [ ] Display the profile photo with each post
-    - [ ] Tapping on a post's username or profile photo goes to that user's profile page
+    - [X] Allow the logged in user to add a profile photo
+    - [X] Display the profile photo with each post
+    - [X] Tapping on a post's username or profile photo goes to that user's profile page
     - [ ] User Profile shows posts in a grid
 - [ ] After the user submits a new post, show an indeterminate progress bar while the post is being uploaded to Parse
 - [ ] User can comment on a post and see all comments for each post in the post details screen.

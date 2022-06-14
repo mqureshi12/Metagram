@@ -39,7 +39,6 @@ public class ComposeFragment extends Fragment {
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private static final String TAG = "ComposeFragment";
-    private Button btnLogout;
     private EditText etDescription;
     private Button btnCaptureImage;
     private ImageView ivPostImage;
@@ -62,7 +61,6 @@ public class ComposeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        btnLogout = view.findViewById(R.id.btnLogout);
         etDescription = view.findViewById(R.id.etDescription);
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
@@ -88,13 +86,6 @@ public class ComposeFragment extends Fragment {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser);
-            }
-        });
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logoutUser();
             }
         });
     }
@@ -154,23 +145,6 @@ public class ComposeFragment extends Fragment {
                 Log.i(TAG, "Post save was successful!");
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
-            }
-        });
-    }
-
-    private void logoutUser() {
-        ParseUser.logOutInBackground(new LogOutCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e != null)
-                {
-                    Log.e(TAG, "Issue with logout", e);
-                    Toast.makeText(getContext(), "Issue with logout", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent i = new Intent(getContext(), LoginActivity.class);
-                    startActivity(i);
-                    Toast.makeText(getContext(), "Success!", Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }
