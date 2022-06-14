@@ -24,9 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.metagram.FeedActivity;
 import com.example.metagram.LoginActivity;
-import com.example.metagram.MainActivity;
 import com.example.metagram.Post;
 import com.example.metagram.R;
 import com.parse.LogOutCallback;
@@ -48,7 +46,6 @@ public class ComposeFragment extends Fragment {
     private Button btnSubmit;
     private File photoFile;
     public String photoFileName = "photo.jpg";
-    private Button btnFeed;
 
     public ComposeFragment() {
         // Required empty public constructor
@@ -70,7 +67,6 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
-        btnFeed = view.findViewById(R.id.btnFeed);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,14 +95,6 @@ public class ComposeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 logoutUser();
-            }
-        });
-
-        btnFeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), FeedActivity.class);
-                startActivity(i);
             }
         });
     }
