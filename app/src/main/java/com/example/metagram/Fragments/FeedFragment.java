@@ -49,36 +49,20 @@ public class FeedFragment extends Fragment {
 
         rvPosts = view.findViewById(R.id.rvPosts);
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-                query.include(Post.KEY_USER);
-                query.setLimit(20);
-                query.addDescendingOrder("createdAt");
-                query.findInBackground(new FindCallback<Post>() {
-                    @Override
-                    public void done(List<Post> posts, ParseException e) {
-                        if (e != null) {
-                            Log.e(TAG, "Issue with getting posts", e);
-                            return;
-                        }
-                        for (Post post : posts) {
-                            Log.i(TAG, "Post: " + post.getDescription() + ", username: " +
-                                    post.getUser().getUsername());
-                        }
-                        adapter.clear();
-                        adapter.addAll(posts);
-                        swipeContainer.setRefreshing(false);
-                    }
-                });
-            }
-        });
+        swipeContainer = view.findViewById(R.id.swipeContainer);
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG,"Fetching posts data");
+                adapter.clear();
+                allPosts.clear();
+                queryPosts();
+            }
+        });
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(getContext(), allPosts);
         rvPosts.setAdapter(adapter);
@@ -103,6 +87,7 @@ public class FeedFragment extends Fragment {
                             post.getUser().getUsername());
                 }
                 allPosts.addAll(posts);
+                swipeContainer.setRefreshing(false);
                 adapter.notifyDataSetChanged();
             }
         });
