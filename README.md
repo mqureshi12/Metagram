@@ -1,6 +1,6 @@
 # Project 3 - *Metagram*
 
-**Name of your app** is a photo sharing app using Parse as its backend.
+**Metagram** is a photo sharing app using Parse as its backend.
 
 Time spent: **X** hours spent in total
 
@@ -14,9 +14,9 @@ The following **required** functionality is completed:
 - [X] The current signed in user is persisted across app restarts
 - [X] User can log out of their account
 - [X] User can take a photo, add a caption, and post it to "Instagram"
-- [ ] User can view the last 20 posts submitted to "Instagram"
-- [ ] User can pull to refresh the last 20 posts submitted to "Instagram"
-- [ ] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
+- [X] User can view the last 20 posts submitted to "Instagram"
+- [X] User can pull to refresh the last 20 posts submitted to "Instagram"
+- [X] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
 
 The following **stretch** features are implemented:
 
