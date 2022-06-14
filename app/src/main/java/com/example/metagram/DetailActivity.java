@@ -30,7 +30,6 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         post = Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
         Log.i(TAG, "showing details for post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
 
