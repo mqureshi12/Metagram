@@ -26,11 +26,16 @@
         android:theme="@style/Theme.Metagram"
         tools:targetApi="31">
         <activity
+            android:name=".CommentsActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".FeedActivity" />
+
         <activity
             android:name=".FeedActivity"
             android:exported="false" />
