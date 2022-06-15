@@ -1,16 +1,52 @@
 package com.example.metagram.Fragments;
 
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.metagram.Post;
+import com.example.metagram.PostsAdapter;
+import com.example.metagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileFragment extends FeedFragment {
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        rvPosts = view.findViewById(R.id.rvPosts);
+        allPosts = new ArrayList<>();
+        adapter = new PostsAdapter(getContext(), allPosts);
+        rvPosts.setAdapter(adapter);
+        rvPosts.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        queryPosts();
+
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        swipeContainer = view.findViewById(R.id.swipeContainer);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG,"Fetching profile posts data");
+                adapter.clear();
+                allPosts.clear();
+                queryPosts();
+            }
+        });
+    }
 
     @Override
     protected void queryPosts() {
@@ -31,6 +67,7 @@ public class ProfileFragment extends FeedFragment {
                             post.getUser().getUsername());
                 }
                 allPosts.addAll(posts);
+                swipeContainer.setRefreshing(false);
                 adapter.notifyDataSetChanged();
             }
         });

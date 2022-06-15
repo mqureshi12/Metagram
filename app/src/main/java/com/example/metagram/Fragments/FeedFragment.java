@@ -27,10 +27,10 @@ import java.util.List;
 public class FeedFragment extends Fragment {
 
     public static final String TAG = "FeedFragment";
-    private RecyclerView rvPosts;
-    private SwipeRefreshLayout swipeContainer;
+    protected SwipeRefreshLayout swipeContainer;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
+    protected RecyclerView rvPosts;
 
     public FeedFragment() {
         // Required empty public constructor

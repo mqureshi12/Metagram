@@ -6,7 +6,8 @@
                 android:startColor="@color/orange_insta"
                 android:centerColor="#86A8E7"
                 android:endColor="@color/purple_insta"
-                android:type="linear" />
+                android:type="linear"
+                android:angle="90"/>
         </shape>
     </item>
 </selector>
