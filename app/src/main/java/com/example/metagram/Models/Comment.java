@@ -1,4 +1,4 @@
-package com.example.metagram;
+package com.example.metagram.Models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;

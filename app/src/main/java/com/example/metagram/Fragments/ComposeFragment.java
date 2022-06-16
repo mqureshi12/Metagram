@@ -24,10 +24,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.metagram.LoginActivity;
-import com.example.metagram.Post;
+import com.example.metagram.Models.Post;
 import com.example.metagram.R;
-import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -46,9 +44,8 @@ public class ComposeFragment extends Fragment {
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
-    public ComposeFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public ComposeFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,21 +145,4 @@ public class ComposeFragment extends Fragment {
             }
         });
     }
-
-    //    private void queryPosts() {
-//        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-//        query.include(Post.KEY_USER);
-//        query.findInBackground(new FindCallback<Post>() {
-//            @Override
-//            public void done(List<Post> posts, ParseException e) {
-//                if(e != null) {
-//                    Log.e(TAG, "Issue with getting posts", e);
-//                    return;
-//                }
-//                for(Post post : posts) {
-//                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
-//                }
-//            }
-//        });
-//    }
 }

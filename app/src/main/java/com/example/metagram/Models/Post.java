@@ -1,4 +1,4 @@
-package com.example.metagram;
+package com.example.metagram.Models;
 
 import android.os.Build;
 import android.util.Log;

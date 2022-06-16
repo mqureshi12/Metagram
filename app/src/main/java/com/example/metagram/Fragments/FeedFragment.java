@@ -14,8 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.metagram.Post;
-import com.example.metagram.PostsAdapter;
+import com.example.metagram.Models.Post;
+import com.example.metagram.Adapters.PostsAdapter;
 import com.example.metagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -32,9 +32,8 @@ public class FeedFragment extends Fragment {
     protected List<Post> allPosts;
     protected RecyclerView rvPosts;
 
-    public FeedFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public FeedFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

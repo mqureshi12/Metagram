@@ -1,4 +1,4 @@
-package com.example.metagram;
+package com.example.metagram.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.metagram.MainActivity;
+import com.example.metagram.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;

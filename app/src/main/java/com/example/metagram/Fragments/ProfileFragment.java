@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.metagram.Post;
-import com.example.metagram.PostsAdapter;
+import com.example.metagram.Models.Post;
+import com.example.metagram.Adapters.PostsAdapter;
 import com.example.metagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;

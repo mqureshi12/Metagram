@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.metagram.Fragments.ComposeFragment;
 import com.example.metagram.Fragments.FeedFragment;
 import com.example.metagram.Fragments.ProfileFragment;
+import com.example.metagram.Login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;

@@ -51,10 +51,10 @@
         </provider>
 
         <activity
-            android:name=".SignupActivity"
+            android:name=".Login.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

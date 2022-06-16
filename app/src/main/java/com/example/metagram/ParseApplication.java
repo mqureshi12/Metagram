@@ -2,6 +2,8 @@ package com.example.metagram;
 
 import android.app.Application;
 
+import com.example.metagram.Models.Comment;
+import com.example.metagram.Models.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
