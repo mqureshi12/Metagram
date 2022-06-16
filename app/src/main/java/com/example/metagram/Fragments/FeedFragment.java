@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.metagram.EndlessRecyclerViewScrollListener;
 import com.example.metagram.Models.Post;
 import com.example.metagram.Adapters.PostsAdapter;
 import com.example.metagram.R;
@@ -22,10 +23,12 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FeedFragment extends Fragment {
 
+    private EndlessRecyclerViewScrollListener scrollListener;
     public static final String TAG = "FeedFragment";
     protected SwipeRefreshLayout swipeContainer;
     protected PostsAdapter adapter;
@@ -65,8 +68,16 @@ public class FeedFragment extends Fragment {
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(getContext(), allPosts);
         rvPosts.setAdapter(adapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvPosts.setLayoutManager(linearLayoutManager);
         queryPosts();
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                queryPosts(allPosts.get(allPosts.size() - 1).getCreatedAt());
+            }
+        };
+        rvPosts.addOnScrollListener(scrollListener);
     }
 
     protected void queryPosts() {
@@ -89,6 +100,33 @@ public class FeedFragment extends Fragment {
                 allPosts.addAll(posts);
                 swipeContainer.setRefreshing(false);
                 adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    protected void queryPosts(Date startDate) {
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.include(Post.KEY_LIKED_BY);
+        query.setLimit(20);
+        if (startDate != null) {
+            query.whereLessThan(Post.KEY_CREATED_AT, startDate);
+        }
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "issue with getting posts", e);
+                    return;
+                }
+                for (Post post : posts) {
+                    Log.i(TAG, "post: " + post.getDescription() + ", username: " +
+                            post.getUser().getUsername());
+                }
+                allPosts.addAll(posts);
+                adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
         });
     }
