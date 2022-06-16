@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new FeedFragment();
                         break;
                     case R.id.action_compose:
-                        fragment = new ComposeFragment();
+                        fragment = new ComposeFragment(MainActivity.this);
                         break;
                     case R.id.action_profile:
                     default:
@@ -79,5 +79,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void returnToFeed() {
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 }

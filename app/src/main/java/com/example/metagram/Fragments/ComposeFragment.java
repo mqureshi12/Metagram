@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.metagram.MainActivity;
 import com.example.metagram.Models.Post;
 import com.example.metagram.R;
 import com.parse.ParseException;
@@ -44,10 +45,13 @@ public class ComposeFragment extends Fragment {
     private Button btnSubmit;
     private File photoFile;
     private ProgressBar pbLoading;
+    private MainActivity mainActivity;
     public String photoFileName = "photo.jpg";
 
     // Required empty public constructor
-    public ComposeFragment() {}
+    public ComposeFragment(MainActivity activity) {
+        mainActivity = activity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -147,6 +151,7 @@ public class ComposeFragment extends Fragment {
                 pbLoading.setVisibility(ProgressBar.INVISIBLE);
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
+                mainActivity.returnToFeed();
             }
         });
     }
