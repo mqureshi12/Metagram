@@ -70,7 +70,7 @@ public class FeedFragment extends Fragment {
         rvPosts.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvPosts.setLayoutManager(linearLayoutManager);
-        queryPosts();
+//        queryPosts();
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
@@ -129,5 +129,13 @@ public class FeedFragment extends Fragment {
                 swipeContainer.setRefreshing(false);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.w("", "onResume");
+        adapter.clear();
+        queryPosts();
     }
 }
