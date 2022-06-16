@@ -67,6 +67,7 @@ public class ProfileFragment extends FeedFragment {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " +
                             post.getUser().getUsername());
                 }
+                adapter.clear();
                 allPosts.addAll(posts);
                 swipeContainer.setRefreshing(false);
                 adapter.notifyDataSetChanged();
