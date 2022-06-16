@@ -15,9 +15,10 @@
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.20699708454810495" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.37552083333333336" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3091331509279094" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.28170522054036456" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_user_post.xml" value="0.25675675675675674" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.2598068237304688" />
         <entry key="app/src/main/res/xml/fileprovider.xml" value="0.25885416666666666" />
       </map>
