@@ -21,6 +21,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
@@ -49,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         post = Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
-        Log.i(TAG, "showing details for post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+        Log.i(TAG, "Showing details for post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
 
         tvUsername = findViewById(R.id.tvUsername);
         tvDescription = findViewById(R.id.tvDescription);
@@ -71,12 +72,36 @@ public class DetailActivity extends AppCompatActivity {
         String timeAgo = Post.calculateTimeAgo(createdAt);
         tvTimestamp.setText(timeAgo);
 
+        if(post.isLikedByCurrentUser()) {
+            ibLike.setImageResource(R.drawable.ufi_heart_filled);
+        } else {
+            ibLike.setImageResource(R.drawable.ufi_heart);
+        }
+        tvLikes.setText(post.getLikesCount());
+
         ibComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(DetailActivity.this, CommentsActivity.class);
                 i.putExtra("post", post);
                 startActivity(i);
+            }
+        });
+
+        ibLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<ParseUser> likedBy = post.getLikedBy();
+                if(post.isLikedByCurrentUser()) {
+                    // Unlike
+                    post.unLike();
+                    ibLike.setImageResource(R.drawable.ufi_heart);
+                } else {
+                    // Like
+                    post.like();
+                    ibLike.setImageResource(R.drawable.ufi_heart_filled);
+                }
+                tvLikes.setText(post.getLikesCount());
             }
         });
 
@@ -109,6 +134,7 @@ public class DetailActivity extends AppCompatActivity {
         query.whereEqualTo(Comment.KEY_POST, post);
         query.orderByDescending("createdAt");
         query.include(Comment.KEY_AUTHOR);
+        query.include(Post.KEY_LIKED_BY);
         query.findInBackground(new FindCallback<Comment>() {
             @Override
             public void done(List<Comment> comments, ParseException e) {
