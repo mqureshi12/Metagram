@@ -62,6 +62,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvDescription;
         private ImageView ivImage;
         private TextView tvTimestamp;
+        private ImageView ivProfile;
+        private TextView tvProfile;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +72,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
+            ivProfile = itemView.findViewById(R.id.ivProfile);
+            tvProfile = itemView.findViewById(R.id.tvProfile);
         }
 
         public void bind(Post post) {
@@ -85,6 +89,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             } else {
                 ivImage.setVisibility(View.GONE);
             }
+            Glide.with(context).load(image.getUrl()).circleCrop().into(ivProfile);
         }
 
         @Override

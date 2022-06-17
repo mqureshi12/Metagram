@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.metagram.Adapters.ProfileAdapter;
 import com.example.metagram.Models.Post;
 import com.example.metagram.Adapters.PostsAdapter;
@@ -33,6 +36,8 @@ public class ProfileFragment extends Fragment {
     protected ProfileAdapter adapter;
     protected List<Post> allPosts;
     protected RecyclerView rvProfile;
+    private ImageView ivProfile;
+    private TextView tvProfile;
 
     public ProfileFragment(ParseUser userToFilerBy) {
         this.userToFilterBy = userToFilerBy;
@@ -47,11 +52,15 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         rvProfile = view.findViewById(R.id.rvProfile);
+        ivProfile = view.findViewById(R.id.ivProfile);
+        tvProfile = view.findViewById(R.id.tvProfile);
         allPosts = new ArrayList<>();
         adapter = new ProfileAdapter(getContext(), allPosts);
         rvProfile.setAdapter(adapter);
         int numberOfColumns = 3;
         rvProfile.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
+        Glide.with(getContext()).load(R.drawable.default_avatar).circleCrop().into(ivProfile);
+        tvProfile.setText(ParseUser.getCurrentUser().getUsername());
         queryPosts();
 
 //        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
