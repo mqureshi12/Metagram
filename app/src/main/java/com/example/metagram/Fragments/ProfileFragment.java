@@ -51,6 +51,21 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                queryPosts();
+                adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         rvProfile = view.findViewById(R.id.rvProfile);
         ivProfile = view.findViewById(R.id.ivProfile);
         tvProfile = view.findViewById(R.id.tvProfile);
@@ -62,23 +77,7 @@ public class ProfileFragment extends Fragment {
         Glide.with(getContext()).load(R.drawable.default_avatar).circleCrop().into(ivProfile);
         tvProfile.setText(ParseUser.getCurrentUser().getUsername());
         queryPosts();
-
-//        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-//        swipeContainer = view.findViewById(R.id.swipeContainer);
-//        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-//                android.R.color.holo_green_light,
-//                android.R.color.holo_orange_light,
-//                android.R.color.holo_red_light);
-//        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                Log.i(TAG,"Fetching profile posts data");
-//                adapter.clear();
-//                allPosts.clear();
-//                queryPosts();
-//            }
-//        });
-    }
+   }
 
     protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);

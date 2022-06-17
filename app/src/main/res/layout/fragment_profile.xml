@@ -5,6 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Fragments.ProfileFragment">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="510dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="49dp">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProfile"
         android:layout_width="match_parent"
@@ -16,6 +30,8 @@
         android:layout_marginBottom="1dp">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ImageView
         android:id="@+id/ivProfile"
