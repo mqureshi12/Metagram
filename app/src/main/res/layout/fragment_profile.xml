@@ -14,22 +14,22 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="172dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="49dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProfile"
-        android:layout_width="match_parent"
-        android:layout_height="606dp"
-        android:layout_below="@+id/tvProfile"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProfile"
+            android:layout_width="match_parent"
+            android:layout_height="606dp"
+            android:layout_below="@+id/tvProfile"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -49,7 +49,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="102dp"
-        android:layout_marginBottom="5dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="16sp" />
