@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.metagram.Models.Comment;
 import com.example.metagram.Models.Post;
+import com.example.metagram.Models.User;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -12,6 +13,7 @@ public class ParseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        ParseObject.registerSubclass(User.class);
         ParseObject.registerSubclass(Post.class);
         ParseObject.registerSubclass(Comment.class);
         Parse.initialize(new Parse.Configuration.Builder(this)

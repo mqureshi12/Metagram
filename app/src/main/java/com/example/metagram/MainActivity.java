@@ -17,6 +17,7 @@ import com.example.metagram.Fragments.ComposeFragment;
 import com.example.metagram.Fragments.FeedFragment;
 import com.example.metagram.Fragments.ProfileFragment;
 import com.example.metagram.Login.LoginActivity;
+import com.example.metagram.Models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
@@ -26,8 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     final FragmentManager fragmentManager = getSupportFragmentManager();
     public static final String TAG = "MainActivity";
-    private BottomNavigationView bottomNavigationView;
+    public BottomNavigationView bottomNavigationView;
     private Button btnLogout;
+
+    FeedFragment feedFragment = new FeedFragment();
+    ComposeFragment composeFragment = new ComposeFragment(MainActivity.this);
+    ProfileFragment profileFragment = new ProfileFragment(ParseUser.getCurrentUser());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        fragment = new FeedFragment();
+                        fragment = feedFragment;
                         break;
                     case R.id.action_compose:
-                        fragment = new ComposeFragment(MainActivity.this);
+                        fragment = composeFragment;
                         break;
                     case R.id.action_profile:
                     default:
-                        fragment = new ProfileFragment(ParseUser.getCurrentUser());
+                        profileFragment.userToFilterBy = (User) ParseUser.getCurrentUser();
+                        fragment = profileFragment;
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
@@ -83,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void returnToFeed() {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+    }
+
+    public void goToProfileTab(User user) {
+        bottomNavigationView.setSelectedItemId(R.id.action_profile);
+        profileFragment.userToFilterBy = user;
     }
 }

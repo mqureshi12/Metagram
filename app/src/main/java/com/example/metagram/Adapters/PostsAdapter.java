@@ -14,9 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.metagram.DetailActivity;
+import com.example.metagram.MainActivity;
 import com.example.metagram.Models.Post;
+import com.example.metagram.Models.User;
 import com.example.metagram.R;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
@@ -64,6 +67,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvTimestamp;
         private ImageView ivProfile;
         private TextView tvProfile;
+        public User user = (User) User.getCurrentUser();
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,13 +87,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             String timeAgo = Post.calculateTimeAgo(createdAt);
             tvTimestamp.setText(timeAgo);
             ParseFile image = post.getImage();
+            ivProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity activity = (MainActivity) context;
+                    activity.goToProfileTab((User) post.getUser());
+                }
+            });
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
                 ivImage.setVisibility(View.VISIBLE);
             } else {
                 ivImage.setVisibility(View.GONE);
             }
-            Glide.with(context).load(image.getUrl()).circleCrop().into(ivProfile);
+            Glide.with(context).load(((User) post.getUser()).getProfilePhoto().getUrl()).circleCrop().into(ivProfile);
         }
 
         @Override

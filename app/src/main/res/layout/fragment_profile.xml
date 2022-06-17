@@ -35,8 +35,8 @@
 
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="83dp"
-        android:layout_height="78dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
+        android:layout_marginTop="130dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="16sp" />
